@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/rflab/robotics_foundations/robot_ws/install/setup.sh

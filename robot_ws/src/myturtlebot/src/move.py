@@ -1,4 +1,6 @@
-import ROS python API
+#!/usr/bin/env python
+
+# Import ROS python API
 import rospy
 
 # Import the message information we are going to use (more info here: http://wiki.ros.org/msg). To find out the data structure for this particular message, go to: http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html
@@ -39,3 +41,9 @@ while not rospy.is_shutdown():
 # Without this call to rospy.sleep() the code would still run, but it would send far too many messages, and take up an entire CPU core!
     rate.sleep()
     
+    
+    
+    
+    
+    
+
