@@ -1,8 +1,0 @@
-prefix=/home/rflab/robotics_foundations/robot_ws/install
-
-Name: myturtlebot
-Description: Description of myturtlebot
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/rflab/robotics_foundations/robot_ws/install/lib 
-Requires: 

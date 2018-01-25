@@ -1,2 +1,0 @@
-myturtlebot
--DCATKIN_DEVEL_PREFIX=/home/rflab/robotics_foundations/robot_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rflab/robotics_foundations/robot_ws/install -G Unix Makefiles
