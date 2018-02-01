@@ -1,0 +1,37 @@
+# CMake generated Testfile for 
+# Source directory: /home/rflab/ros_ws/src
+# Build directory: /home/rflab/ros_ws/build
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+subdirs(gtest)
+subdirs(moveit_robots/atlas_moveit_config)
+subdirs(baxter/baxter_common/baxter_common)
+subdirs(baxter/baxter_common/baxter_description)
+subdirs(baxter/baxter/baxter_sdk)
+subdirs(baxter/baxter_simulator/baxter_simulator)
+subdirs(gazebo_ros_pkgs/gazebo_dev)
+subdirs(gazebo_ros_pkgs/gazebo_ros_pkgs)
+subdirs(moveit_robots/iri_wam_moveit_config)
+subdirs(moveit_robots/moveit_robots)
+subdirs(moveit_robots/r2_moveit_generated)
+subdirs(baxter/baxter_common/rethink_ee_description)
+subdirs(moveit_robots/baxter/baxter_moveit_config)
+subdirs(baxter/baxter_common/baxter_maintenance_msgs)
+subdirs(baxter/baxter_common/baxter_core_msgs)
+subdirs(gazebo_ros_pkgs/gazebo_msgs)
+subdirs(baxter/baxter_simulator/baxter_sim_io)
+subdirs(baxter/baxter_interface)
+subdirs(baxter/baxter_tools)
+subdirs(gazebo_ros_pkgs/gazebo_ros)
+subdirs(baxter/baxter_simulator/baxter_sim_controllers)
+subdirs(gazebo_ros_pkgs/gazebo_plugins)
+subdirs(gazebo_ros_pkgs/gazebo_ros_control)
+subdirs(baxter/baxter_simulator/baxter_gazebo)
+subdirs(baxter/baxter_simulator/baxter_sim_kinematics)
+subdirs(baxter/baxter_simulator/baxter_sim_hardware)
+subdirs(baxter/baxter_simulator/baxter_sim_examples)
+subdirs(moveit_robots/baxter/baxter_ikfast_left_arm_plugin)
+subdirs(moveit_robots/baxter/baxter_ikfast_right_arm_plugin)
+subdirs(moveit_robots/atlas_v3_moveit_config)
+subdirs(baxter/baxter_examples)

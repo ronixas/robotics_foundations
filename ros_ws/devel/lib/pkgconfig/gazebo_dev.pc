@@ -1,0 +1,8 @@
+prefix=/home/rflab/ros_ws/devel
+
+Name: gazebo_dev
+Description: Description of gazebo_dev
+Version: 2.5.14
+Cflags: 
+Libs: -L/home/rflab/ros_ws/devel/lib 
+Requires: 
