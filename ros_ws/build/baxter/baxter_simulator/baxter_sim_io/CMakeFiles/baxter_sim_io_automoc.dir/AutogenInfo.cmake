@@ -1,4 +1,4 @@
-set(AM_SOURCES "/home/rflab/ros_ws/src/baxter/baxter_simulator/baxter_sim_io/src/baxter_io.cpp;/home/rflab/ros_ws/src/baxter/baxter_simulator/baxter_sim_io/src/main.cpp;/home/rflab/ros_ws/src/baxter/baxter_simulator/baxter_sim_io/src/qnode.cpp" )
+set(AM_SOURCES "/home/rflab/ros_ws/src/baxter/baxter_simulator/baxter_sim_io/src/qnode.cpp;/home/rflab/ros_ws/src/baxter/baxter_simulator/baxter_sim_io/src/baxter_io.cpp;/home/rflab/ros_ws/src/baxter/baxter_simulator/baxter_sim_io/src/main.cpp" )
 set(AM_RCC_SOURCES  )
 set(AM_RCC_INPUTS )
 set(AM_SKIP_MOC "" )

@@ -29,6 +29,7 @@
     <parent link="torso"/>
     <child link="pedestal"/>
   </joint>
+  
   <xacro:if value="$(arg gazebo)">
     <!-- When using the pedistal, fix Baxter to Gazebo world with 'base' frame -->
     <link name="world"/>

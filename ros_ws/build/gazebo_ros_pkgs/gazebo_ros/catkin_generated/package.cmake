@@ -1,5 +1,5 @@
 set(_CATKIN_CURRENT_PACKAGE "gazebo_ros")
-set(gazebo_ros_VERSION "2.5.14")
+set(gazebo_ros_VERSION "2.5.15")
 set(gazebo_ros_MAINTAINER "Jose Luis Rivero <jrivero@osrfoundation.org>")
 set(gazebo_ros_PACKAGE_FORMAT "2")
 set(gazebo_ros_BUILD_DEPENDS "cmake_modules" "gazebo_dev" "gazebo_msgs" "roslib" "roscpp" "tf" "std_srvs" "rosgraph_msgs" "dynamic_reconfigure" "std_msgs" "geometry_msgs" "tinyxml")

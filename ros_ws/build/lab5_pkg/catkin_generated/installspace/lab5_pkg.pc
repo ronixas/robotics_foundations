@@ -1,0 +1,8 @@
+prefix=/home/rflab/ros_ws/install
+
+Name: lab5_pkg
+Description: Description of lab5_pkg
+Version: 0.0.0
+Cflags: -I/home/rflab/ros_ws/install/include
+Libs: -L/home/rflab/ros_ws/install/lib 
+Requires: 

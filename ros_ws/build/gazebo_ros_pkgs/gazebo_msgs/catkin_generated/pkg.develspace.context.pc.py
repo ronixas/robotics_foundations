@@ -5,4 +5,4 @@ PROJECT_CATKIN_DEPENDS = "message_runtime;std_msgs;trajectory_msgs;geometry_msgs
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "gazebo_msgs"
 PROJECT_SPACE_DIR = "/home/rflab/ros_ws/devel"
-PROJECT_VERSION = "2.5.14"
+PROJECT_VERSION = "2.5.15"

@@ -1,5 +1,5 @@
 set(_CATKIN_CURRENT_PACKAGE "gazebo_plugins")
-set(gazebo_plugins_VERSION "2.5.14")
+set(gazebo_plugins_VERSION "2.5.15")
 set(gazebo_plugins_MAINTAINER "Jose Luis Rivero <jrivero@osrfoundation.org>")
 set(gazebo_plugins_PACKAGE_FORMAT "2")
 set(gazebo_plugins_BUILD_DEPENDS "gazebo_dev" "message_generation" "gazebo_msgs" "geometry_msgs" "sensor_msgs" "trajectory_msgs" "std_srvs" "roscpp" "rospy" "nodelet" "angles" "nav_msgs" "urdf" "tf" "tf2_ros" "dynamic_reconfigure" "rosgraph_msgs" "image_transport" "rosconsole" "cv_bridge" "polled_camera" "diagnostic_updater" "camera_info_manager" "std_msgs")

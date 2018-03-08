@@ -5,4 +5,4 @@ PROJECT_CATKIN_DEPENDS = "roscpp;std_msgs;controller_manager;control_toolbox;plu
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "-lgazebo_ros_control;-ldefault_robot_hw_sim".split(';') if "-lgazebo_ros_control;-ldefault_robot_hw_sim" != "" else []
 PROJECT_NAME = "gazebo_ros_control"
 PROJECT_SPACE_DIR = "/home/rflab/ros_ws/devel"
-PROJECT_VERSION = "2.5.14"
+PROJECT_VERSION = "2.5.15"

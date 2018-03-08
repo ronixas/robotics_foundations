@@ -1,5 +1,5 @@
 set(_CATKIN_CURRENT_PACKAGE "gazebo_msgs")
-set(gazebo_msgs_VERSION "2.5.14")
+set(gazebo_msgs_VERSION "2.5.15")
 set(gazebo_msgs_MAINTAINER "Jose Luis Rivero <jrivero@osrfoundation.org>")
 set(gazebo_msgs_PACKAGE_FORMAT "2")
 set(gazebo_msgs_BUILD_DEPENDS "geometry_msgs" "sensor_msgs" "trajectory_msgs" "std_msgs" "std_srvs" "message_generation")

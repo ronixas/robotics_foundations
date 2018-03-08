@@ -181,7 +181,7 @@ class PickAndPlace(object):
         # retract to clear object
         self._retract()
 
-def load_gazebo_models(table_pose=Pose(position=Point(x=1.0, y=0.0, z=-0.93)),
+def load_gazebo_models(table_pose=Pose(position=Point(x=1.0, y=0.0, z=0.0)),
                        table_reference_frame="world",
                        block_pose=Pose(position=Point(x=0.6725, y=0.1265, z=0.7825)),
                        block_reference_frame="world"):
@@ -271,12 +271,12 @@ def main():
     # You may wish to replace these poses with estimates
     # from a perception node.
     block_poses.append(Pose(
-        position=Point(x=0.7, y=0.15, z=-0.129),
+        position=Point(x=0.7, y=0.15, z=0.801),
         orientation=overhead_orientation))
     # Feel free to add additional desired poses for the object.
     # Each additional pose will get its own pick and place.
     block_poses.append(Pose(
-        position=Point(x=0.75, y=0.0, z=-0.129),
+        position=Point(x=0.75, y=0.0, z=0.801),
         orientation=overhead_orientation))
     # Move to the desired starting angles
     pnp.move_to_start(starting_joint_angles)

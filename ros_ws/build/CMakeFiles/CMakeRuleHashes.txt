@@ -78,6 +78,7 @@ f81b1a1c5e4d9f2d3cb1950bf56c4e47 /home/rflab/ros_ws/devel/include/gazebo_plugins
 b9dbfbf9ffe3f5465c907276cc88b8d7 /home/rflab/ros_ws/devel/include/gazebo_plugins/GazeboRosOpenniKinectConfig.h
 ecc067a0058ce36eafa647381a83d747 /home/rflab/ros_ws/devel/include/gazebo_plugins/HokuyoConfig.h
 8c3994373b8bd4a078a24fccdada57ec /home/rflab/ros_ws/devel/include/gazebo_ros/PhysicsConfig.h
+6b2f936b489c5de1ce0dd27da66f552f /home/rflab/ros_ws/devel/include/lab5_pkg/capture.h
 2850f69926c47b47fd39d57059a7a1a0 /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/baxter_core_msgs/msg/_AnalogIOState.py
 651d0db68732d09b3d6db71c1532716e /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/baxter_core_msgs/msg/_AnalogIOStates.py
 fffef5f967267e56b6628bb0972026d0 /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/baxter_core_msgs/msg/_AnalogOutputCommand.py
@@ -151,6 +152,8 @@ fd7f586f6600d028ca3ad91956e79880 /home/rflab/ros_ws/devel/lib/python2.7/dist-pac
 0c99de7739345f37191c7d149e24a4af /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/gazebo_msgs/srv/_SetPhysicsProperties.py
 6af004fdd85992f63319e98c9bb5b1c3 /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/gazebo_msgs/srv/_SpawnModel.py
 147ce3608ee989c9ae8fc363f328a540 /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/gazebo_msgs/srv/__init__.py
+b0e2058dc02524e20eab2865b74f843b /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/lab5_pkg/srv/__init__.py
+cbdd39c38ea2391de26aefea40d26ebf /home/rflab/ros_ws/devel/lib/python2.7/dist-packages/lab5_pkg/srv/_capture.py
 ee6f6294c5c28e216690d6dfa58ff996 /home/rflab/ros_ws/devel/share/common-lisp/ros/baxter_core_msgs/msg/AnalogIOState.lisp
 fed38d68db1526cc3c0f4934174de984 /home/rflab/ros_ws/devel/share/common-lisp/ros/baxter_core_msgs/msg/AnalogIOStates.lisp
 fd6c11ad3b9b0db1923f80566b226998 /home/rflab/ros_ws/devel/share/common-lisp/ros/baxter_core_msgs/msg/AnalogOutputCommand.lisp
@@ -219,6 +222,7 @@ a455fc806be99bbdc21c2150bea6ae47 /home/rflab/ros_ws/devel/share/common-lisp/ros/
 98280d3ec7909b0f5122bfe2d27c11f3 /home/rflab/ros_ws/devel/share/common-lisp/ros/gazebo_msgs/srv/SetModelState.lisp
 3ba602c266105e76ed3bbff079bd0e24 /home/rflab/ros_ws/devel/share/common-lisp/ros/gazebo_msgs/srv/SetPhysicsProperties.lisp
 0809139b2a9b35dfa3efa67d3cc83c8d /home/rflab/ros_ws/devel/share/common-lisp/ros/gazebo_msgs/srv/SpawnModel.lisp
+b5ec7f6710f693fff85c74ceddf835a2 /home/rflab/ros_ws/devel/share/common-lisp/ros/lab5_pkg/srv/capture.lisp
 e4c2772dcf66dfceb1eef0d31155d0d9 /home/rflab/ros_ws/devel/share/gennodejs/ros/baxter_core_msgs/msg/AnalogIOState.js
 7c1b3cd18ba9e8c4a8985aabd1636551 /home/rflab/ros_ws/devel/share/gennodejs/ros/baxter_core_msgs/msg/AnalogIOStates.js
 6eec8496c049344ca907a6fd2b46628d /home/rflab/ros_ws/devel/share/gennodejs/ros/baxter_core_msgs/msg/AnalogOutputCommand.js
@@ -287,6 +291,7 @@ bb198edd7d9d3f481f3be504fd35f477 /home/rflab/ros_ws/devel/share/gennodejs/ros/ga
 18b5e687c76b6bb742818f21548e3f2a /home/rflab/ros_ws/devel/share/gennodejs/ros/gazebo_msgs/srv/SetModelState.js
 76e46472f9457278adcc3e790b6d7a98 /home/rflab/ros_ws/devel/share/gennodejs/ros/gazebo_msgs/srv/SetPhysicsProperties.js
 ef3b3a8943e6b022a76d324d740e6f63 /home/rflab/ros_ws/devel/share/gennodejs/ros/gazebo_msgs/srv/SpawnModel.js
+9a3d06d06f00badbc02967e233a68bc2 /home/rflab/ros_ws/devel/share/gennodejs/ros/lab5_pkg/srv/capture.js
 4d7652d1a0780113babfe8d2a7ebd59e /home/rflab/ros_ws/devel/share/roseus/ros/baxter_core_msgs/manifest.l
 770e479bcd9fc6027201b70a123fc407 /home/rflab/ros_ws/devel/share/roseus/ros/baxter_core_msgs/msg/AnalogIOState.l
 957491c400a280775cde2bf0178452ef /home/rflab/ros_ws/devel/share/roseus/ros/baxter_core_msgs/msg/AnalogIOStates.l
@@ -358,6 +363,8 @@ adeb804abab063c0bcc46083ca629998 /home/rflab/ros_ws/devel/share/roseus/ros/gazeb
 a0f3ea88e9043f24aca745ee71babcee /home/rflab/ros_ws/devel/share/roseus/ros/gazebo_msgs/srv/SetModelState.l
 210d57e51578b6c392eef4d821a8b020 /home/rflab/ros_ws/devel/share/roseus/ros/gazebo_msgs/srv/SetPhysicsProperties.l
 75b7f0a1f0f6853f8eb9c05e8827592a /home/rflab/ros_ws/devel/share/roseus/ros/gazebo_msgs/srv/SpawnModel.l
+35dfa513558fd47fd588089b6fed32f8 /home/rflab/ros_ws/devel/share/roseus/ros/lab5_pkg/manifest.l
+b49ce1a3c4c2fc275067415f386f5817 /home/rflab/ros_ws/devel/share/roseus/ros/lab5_pkg/srv/capture.l
 969cf19fc18413e34e55b88ca6e455a1 CMakeFiles/clean_test_results
 38a86f9bddbd93a7d0bd8a3b516f91b8 baxter/baxter_common/baxter_core_msgs/CMakeFiles/_baxter_core_msgs_generate_messages_check_deps_AnalogIOState
 f44ad578f779cc02e45474390325404b baxter/baxter_common/baxter_core_msgs/CMakeFiles/_baxter_core_msgs_generate_messages_check_deps_AnalogIOStates
@@ -456,3 +463,9 @@ dad6fab5982a742baf83fe1881af9a82 gazebo_ros_pkgs/gazebo_plugins/CMakeFiles/clean
 55dd4b830cf9d2f16b4bd05038573054 gazebo_ros_pkgs/gazebo_plugins/CMakeFiles/run_tests_gazebo_plugins_rostest_test_range_range_plugin.test
 c1def5e17efa04e99f1e90bde930440e gazebo_ros_pkgs/gazebo_plugins/CMakeFiles/run_tests_gazebo_plugins_rostest_test_set_model_state_test_set_model_state_test.test
 de8f2167e41702794559112d5d3d86a7 gazebo_ros_pkgs/gazebo_ros/CMakeFiles/gazebo_ros_gencfg
+aa7751111e86e0a3888c2be9fcb20708 lab5_pkg/CMakeFiles/_lab5_pkg_generate_messages_check_deps_capture
+4bcc5d18316dfcac4650a3f9df3c7d18 lab5_pkg/CMakeFiles/lab5_pkg_generate_messages_cpp
+4bcc5d18316dfcac4650a3f9df3c7d18 lab5_pkg/CMakeFiles/lab5_pkg_generate_messages_eus
+4bcc5d18316dfcac4650a3f9df3c7d18 lab5_pkg/CMakeFiles/lab5_pkg_generate_messages_lisp
+4bcc5d18316dfcac4650a3f9df3c7d18 lab5_pkg/CMakeFiles/lab5_pkg_generate_messages_nodejs
+4bcc5d18316dfcac4650a3f9df3c7d18 lab5_pkg/CMakeFiles/lab5_pkg_generate_messages_py

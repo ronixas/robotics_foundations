@@ -1,5 +1,5 @@
 set(_CATKIN_CURRENT_PACKAGE "gazebo_ros_control")
-set(gazebo_ros_control_VERSION "2.5.14")
+set(gazebo_ros_control_VERSION "2.5.15")
 set(gazebo_ros_control_MAINTAINER "Jose Luis Rivero <jrivero@osrfoundation.org>")
 set(gazebo_ros_control_PACKAGE_FORMAT "2")
 set(gazebo_ros_control_BUILD_DEPENDS "gazebo_dev" "roscpp" "std_msgs" "control_toolbox" "controller_manager" "pluginlib" "hardware_interface" "transmission_interface" "joint_limits_interface" "urdf" "angles")

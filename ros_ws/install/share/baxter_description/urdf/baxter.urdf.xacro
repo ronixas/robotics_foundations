@@ -1,8 +1,9 @@
 <?xml version="1.0" ?>
 <robot name="baxter" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:arg name="gazebo" default="false"/>
+  <xacro:arg name="gazebo" default="true"/>
   <xacro:arg name="pedestal" default="true"/>
+  <xacro:arg name="coffe_table" default="true"/>
   <!-- Baxter Base URDF -->
   <xacro:include filename="$(find baxter_description)/urdf/baxter_base/baxter_base.urdf.xacro">
     <xacro:arg name="gazebo" value="${gazebo}"/>
@@ -20,5 +21,8 @@
 
   <!-- Right End Effector -->
   <xacro:include filename="$(find baxter_description)/urdf/right_end_effector.urdf.xacro" />
+  
+  <!-- Coffe Table -->
+  <xacro:include filename="$(find baxter_sim_examples)/models/cafe_table/model.xacro" />
 
 </robot>

@@ -1,5 +1,5 @@
 set(_CATKIN_CURRENT_PACKAGE "gazebo_dev")
-set(gazebo_dev_VERSION "2.5.14")
+set(gazebo_dev_VERSION "2.5.15")
 set(gazebo_dev_MAINTAINER "John Hsu <hsu@osrfoundation.org>, Dave Coleman <davetcoleman@gmail.com>")
 set(gazebo_dev_PACKAGE_FORMAT "2")
 set(gazebo_dev_BUILD_DEPENDS )

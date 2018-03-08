@@ -1,0 +1,8 @@
+prefix=/home/rflab/ros_ws/devel
+
+Name: baxter_lab
+Description: Description of baxter_lab
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/rflab/ros_ws/devel/lib 
+Requires: 

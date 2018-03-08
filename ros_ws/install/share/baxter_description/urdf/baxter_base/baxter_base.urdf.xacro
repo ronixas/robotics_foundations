@@ -185,12 +185,12 @@
   </link>
   <joint name="collision_head_1" type="fixed">
     <origin rpy="0 0 0" xyz="0.11 0 0.75"/>
-    <parent link="base"/>
+    <parent link="torso"/>
     <child link="collision_head_link_1"/>
   </joint>
   <joint name="collision_head_2" type="fixed">
     <origin rpy="0 0 0" xyz="0.11 0 0.75"/>
-    <parent link="base"/>
+    <parent link="torso"/>
     <child link="collision_head_link_2"/>
   </joint>
   <joint name="dummy" type="fixed">
@@ -199,7 +199,7 @@
     <child link="dummyhead1"/>
   </joint>
   <joint name="torso_t0" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0.93"/>
     <parent link="base"/>
     <child link="torso"/>
     <limit effort="50000" lower="-3.01" upper="3.01" velocity="10000"/>
