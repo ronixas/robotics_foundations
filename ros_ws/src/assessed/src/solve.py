@@ -145,21 +145,13 @@ def main():
     # decide on the limb (left or right)
     limb = 'left'
     hover_distance = 0.15 # meters
-    
 
-
-
-    # An orientation for gripper fingers to be overhead and parallel to the obj
-    overhead_orientation = Quaternion(x=-0.0249590815779, y=0.999649402929, z=0.00737916180073, w=0.00486450832011)
-    # *************** SOLUTION
-    starting_pose = Pose(
-        position=Point(x=0.7, y=0.15, z=1.2),
-        orientation=overhead_orientation)
-
+    # create the sorting object
     pnp = PickAndPlaceMoveIt(limb, hover_distance)
 
     # block poses will be held in a dict indexted with block name
     block_poses = dict()
+    block_targets = dict()
     
     for objNo in range(0, noOfBlocks):
         try:
@@ -171,21 +163,32 @@ def main():
             orientation = Quaternion(x=rot[0], y=rot[1], z=rot[2], w=rot[3])
             # update the block positions
             block_poses[objName] = Pose(position=position, orientation=orientation)
- 
+
+            targ_pos = Point(x=trans[0]+0.2, y=trans[1], z=trans[2])
+            targ_ori = Quaternion(x=0, y=0, z=0, w=0)
+            block_targets[objName] = Pose(position=targ_pose, orientation=targ_ori)
+
+            #testing
+            print "moving {}".format(objName)
+            print("\nPicking...")
+            pnp.pick(block_poses[objName])
+            print("\nPlacing...")
+            pnp.place(block_targets[objName])
         except Exception as e:
             print e
 
     
     # Move to the desired starting angles
-    pnp.move_to_start(starting_pose)
+    #pnp.move_to_start(starting_pose)
 
     idx = 0
     while not rospy.is_shutdown():
-        print("\nPicking...")
-        pnp.pick(block_poses[idx])
-        print("\nPlacing...")
-        idx = (idx+1) % len(block_poses)
-        pnp.place(block_poses[idx])
+        print "sleeping...."
+        #print("\nPicking...")
+        #pnp.pick(block_poses[idx])
+        #print("\nPlacing...")
+        #idx = (idx+1) % len(block_poses)
+        #pnp.place(block_poses[idx])
     return 0
 
 if __name__ == '__main__':
