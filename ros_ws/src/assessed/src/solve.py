@@ -186,7 +186,7 @@ def main():
             print("\nPicking...")
             pnp.pick(block_poses[name][1])
             print("\nPlacing...")
-            pnp.place(block_targets[name][1])
+            pnp.place(block_targets[name])
     return 0
 
 if __name__ == '__main__':
