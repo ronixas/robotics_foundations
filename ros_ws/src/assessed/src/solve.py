@@ -34,7 +34,7 @@ import baxter_interface
 import moveit_commander
 
 # constants
-noOfBlocks = 1
+noOfBlocks = 5
 baseName = "block"
 
 class PickAndPlaceMoveIt(object):
