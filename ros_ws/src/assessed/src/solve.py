@@ -169,19 +169,15 @@ def main():
 
             targ_pos = Point(x=float(trans[0])+0.2, y=trans[1], z=trans[2])
             targ_ori = Quaternion(x=0, y=0, z=0, w=0)
-            block_targets[objName] = Pose(position=targ_pose, orientation=targ_ori)
+            block_targets[objName] = Pose(position=targ_pos, orientation=targ_ori)
 
             print objName + " read"
         except Exception as e:
             print e
 
-    
-    # Move to the desired starting angles
-    #pnp.move_to_start(starting_pose)
-
-    idx = 0
+    # move block one by one
     while not rospy.is_shutdown():
-         for name in block_poses.keys().sorted():
+         for name in block_poses.keys():
             #testing
             print "moving {}".format(name)
             print("\nPicking...")
