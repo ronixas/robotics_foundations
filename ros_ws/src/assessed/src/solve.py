@@ -155,6 +155,9 @@ def main():
     # block poses will be held in a dict indexted with block name
     block_poses = dict()
     block_targets = dict()
+
+    # start orientation
+    start_orientation = Quaternion(x=0, y=1, z=0, w=0.00486450832011)
     
     for objNo in range(0, noOfBlocks):
         try:
@@ -166,10 +169,10 @@ def main():
             obj_position = Point(x=trans[0], y=trans[1], z=trans[2])
             orientation = Quaternion(x=rot[0], y=rot[1], z=rot[2], w=rot[3])
             # update the block positions
-            block_poses[objName] = [Pose(position=start_position, orientation=orientation), Pose(position=obj_position, orientation=orientation)]
+            block_poses[objName] = [Pose(position=start_position, orientation=start_orientation), Pose(position=obj_position, orientation=orientation)]
 	    print "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}".format(objName, trans[0], trans[1], trans[2], rot[0], rot[1], rot[2], rot[3]) 
             targ_pos = Point(x=float(trans[0])+0.2, y=trans[1], z=trans[2])
-            targ_ori = Quaternion(x=0, y=0, z=0, w=1)
+            targ_ori = Quaternion(x=0, y=0, z=0, w=0.00486450832011)
             block_targets[objName] = Pose(position=targ_pos, orientation=targ_ori)
 
             print objName + " read"
@@ -182,15 +185,15 @@ def main():
             #testing
             print "moving {}".format(name)
             # move over the block
-            #pnp.move_to_start(block_poses[name][0])
-	    pnp.move_to_start(Pose(
-        position=Point(x=0.75, y=0, z=1.1),
-        orientation=Quaternion(x=-0.0249590815779, y=0.999649402929, z=0.00737916180073, w=0.00486450832011)))
-            print("\nPicking...")
+            pnp.move_to_start(block_poses[name][0])
+	    #pnp.move_to_start(Pose(
+        #position=Point(x=0.75, y=0, z=1.1),
+        #orientation=Quaternion(x=0, y=1, z=0, w=0.00486450832011)))
+            #print("\nPicking...")
             print "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}".format(name, block_poses[name][0].position.x, block_poses[name][0].position.y, block_poses[name][0].position.z, block_poses[name][0].orientation.x, block_poses[name][0].orientation.y, block_poses[name][0].orientation.z, block_poses[name][0].orientation.w)  
-            pnp.pick(block_poses[name][1])
-            print("\nPlacing...")
-            pnp.place(block_targets[name])
+            #pnp.pick(block_poses[name][1])
+            #print("\nPlacing...")
+            #pnp.place(block_targets[name])
     return 0
 
 if __name__ == '__main__':
