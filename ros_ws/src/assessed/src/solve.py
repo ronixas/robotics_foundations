@@ -8,6 +8,7 @@ import copy
 import rospy
 import rospkg
 import tf
+import time
 
 from gazebo_msgs.srv import (
     SpawnModel,
@@ -49,6 +50,8 @@ class PickAndPlaceMoveIt(object):
         print("Enabling robot... ")
 	# add listener
 	self.listener = tf.TransformListener()
+        # let listener buffer to fill before using  
+        time.sleep(1)
         
         self._robot = moveit_commander.RobotCommander()
         # This is an interface to one group of joints.  In our case, we want to use the "right_arm".
@@ -155,7 +158,7 @@ def main():
     
     for objNo in range(0, noOfBlocks):
         try:
-            objName = baseName + objNo
+            objName = baseName + str(objNo)
             # retrieve block transformation with help of a listener
             (trans,rot) = pnp.listener.lookupTransform('/' + objName, '/world', rospy.Time(0))
             # use the transforms to create poses
@@ -164,16 +167,11 @@ def main():
             # update the block positions
             block_poses[objName] = Pose(position=position, orientation=orientation)
 
-            targ_pos = Point(x=trans[0]+0.2, y=trans[1], z=trans[2])
+            targ_pos = Point(x=float(trans[0])+0.2, y=trans[1], z=trans[2])
             targ_ori = Quaternion(x=0, y=0, z=0, w=0)
             block_targets[objName] = Pose(position=targ_pose, orientation=targ_ori)
 
-            #testing
-            print "moving {}".format(objName)
-            print("\nPicking...")
-            pnp.pick(block_poses[objName])
-            print("\nPlacing...")
-            pnp.place(block_targets[objName])
+            print objName + " read"
         except Exception as e:
             print e
 
@@ -183,12 +181,13 @@ def main():
 
     idx = 0
     while not rospy.is_shutdown():
-        print "sleeping...."
-        #print("\nPicking...")
-        #pnp.pick(block_poses[idx])
-        #print("\nPlacing...")
-        #idx = (idx+1) % len(block_poses)
-        #pnp.place(block_poses[idx])
+         for name in block_poses.keys().sorted():
+            #testing
+            print "moving {}".format(name)
+            print("\nPicking...")
+            pnp.pick(block_poses[name])
+            print("\nPlacing...")
+            pnp.place(block_targets[name])
     return 0
 
 if __name__ == '__main__':
