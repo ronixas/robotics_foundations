@@ -32,6 +32,10 @@ from baxter_core_msgs.srv import (
 import baxter_interface
 import moveit_commander
 
+# constants
+noOfBlocks = 1
+baseName = "block"
+
 class PickAndPlaceMoveIt(object):
     def __init__(self, limb, hover_distance = 0.15, verbose=True):
         self._limb_name = limb # string
@@ -46,25 +50,22 @@ class PickAndPlaceMoveIt(object):
 	# add listener
 	self.listener = tf.TransformListener()
         
-        # *************** SOLUTION
         self._robot = moveit_commander.RobotCommander()
         # This is an interface to one group of joints.  In our case, we want to use the "right_arm".
         #We will use this to plan and execute motions
         self._group = moveit_commander.MoveGroupCommander(limb+"_arm")
         self._group.set_max_velocity_scaling_factor(0.2) # This is to make Baxter move slower
-        # ***************os =
 
     def move_to_start(self, start_angles=None):
+
         print("Moving the {0} arm to start pose...".format(self._limb_name))
-        
-        # *************** SOLUTION
         self.gripper_open()
         self._group.set_pose_target(start_angles)
         plan = self._group.plan()
         self._group.execute(plan)
         rospy.sleep(1.0)
         print("Running. Ctrl-c to quit")
-        # ***************
+
 
     def _guarded_move_to_joint_position(self, joint_angles):
         if joint_angles:
@@ -84,12 +85,10 @@ class PickAndPlaceMoveIt(object):
         approach = copy.deepcopy(pose)
         # approach with a pose the hover-distance above the requested pose
         approach.position.z = approach.position.z + self._hover_distance
-        
-        # *************** SOLUTION
         self._group.set_pose_target(approach)
         plan = self._group.plan()
         self._group.execute(plan)
-        # ***************
+
 
     def _retract(self):
         # retrieve current pose from endpoint
@@ -103,18 +102,14 @@ class PickAndPlaceMoveIt(object):
         ik_pose.orientation.z = current_pose['orientation'].z
         ik_pose.orientation.w = current_pose['orientation'].w
         
-        # *************** SOLUTION
         self._group.set_pose_target(ik_pose)
         plan = self._group.plan()
         self._group.execute(plan)
-        # ***************
 
     def _servo_to_pose(self, pose):
-        # *************** SOLUTION
         self._group.set_pose_target(pose)
         plan = self._group.plan()
         self._group.execute(plan)
-        # ***************
 
     def pick(self, pose):
         # open the gripper
@@ -140,17 +135,20 @@ class PickAndPlaceMoveIt(object):
 
 def main():
 
+    # initialize moveit comander and a node
     moveit_commander.roscpp_initialize(sys.argv)
-    
     rospy.init_node("assessed")
-
 
     # Wait for the All Clear from emulator startup
     rospy.wait_for_message("/robot/sim/started", Empty)
 
+    # decide on the limb (left or right)
     limb = 'left'
     hover_distance = 0.15 # meters
     
+
+
+
     # An orientation for gripper fingers to be overhead and parallel to the obj
     overhead_orientation = Quaternion(x=-0.0249590815779, y=0.999649402929, z=0.00737916180073, w=0.00486450832011)
     # *************** SOLUTION
@@ -159,44 +157,27 @@ def main():
         orientation=overhead_orientation)
 
     pnp = PickAndPlaceMoveIt(limb, hover_distance)
-    # ***************
+
+    # block poses will be held in a dict indexted with block name
+    block_poses = dict()
     
-    block_poses = list()
-    # The Pose of the block in its initial location.
-    # You may wish to replace these poses with estimates
-    # from a perception node.
-    block_poses.append(Pose(
-        position=Point(x=0.7, y=0.15, z=0.801),
-        orientation=overhead_orientation))
-    # Feel free to add additional desired poses for the object.
-    # Each additional pose will get its own pick and place.
-    block_poses.append(Pose(
-        position=Point(x=0.75, y=0.0, z=0.801),
-        orientation=overhead_orientation))
+    for objNo in range(0, noOfBlocks):
+        try:
+            objName = baseName + objNo
+            # retrieve block transformation with help of a listener
+            (trans,rot) = pnp.listener.lookupTransform('/' + objName, '/world', rospy.Time(0))
+            # use the transforms to create poses
+            position = Point(x=trans[0], y=trans[1], z=trans[2])
+            orientation = Quaternion(x=rot[0], y=rot[1], z=rot[2], w=rot[3])
+            # update the block positions
+            block_poses[objName] = Pose(position=position, orientation=orientation)
+ 
+        except Exception as e:
+            print e
+
     
     # Move to the desired starting angles
     pnp.move_to_start(starting_pose)
-
-
-    # *************************************************************
-
-    
-
-    try:
-        (trans,rot) = pnp.listener.lookupTransform('/block0', '/world', rospy.Time(0))
-	posx = trans[0]
-	posy = trans[1]
-	posz = trans[2]
-	orix = rot[0]
-	oriy = rot[1]
-	oriz = rot[2]
-	oriw = rot[3]
-    except Exception as e:
-        print e
-
-    
-
-    #**************************************************************
 
     idx = 0
     while not rospy.is_shutdown():
