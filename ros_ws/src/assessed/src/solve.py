@@ -162,10 +162,11 @@ def main():
             # retrieve block transformation with help of a listener
             (trans,rot) = pnp.listener.lookupTransform('/' + objName, '/world', rospy.Time(0))
             # use the transforms to create poses
-            position = Point(x=trans[0], y=trans[1], z=trans[2])
+            start_position = Point(x=trans[0], y=trans[1], z=float(trans[2])-0.4) # 40cm above the object
+            obj_position = Point(x=trans[0], y=trans[1], z=trans[2])
             orientation = Quaternion(x=rot[0], y=rot[1], z=rot[2], w=rot[3])
             # update the block positions
-            block_poses[objName] = Pose(position=position, orientation=orientation)
+            block_poses[objName] = [Pose(position=start_position, orientation=orientation), Pose(position=obj_position, orientation=orientation)]
 
             targ_pos = Point(x=float(trans[0])+0.2, y=trans[1], z=trans[2])
             targ_ori = Quaternion(x=0, y=0, z=0, w=0)
@@ -180,10 +181,12 @@ def main():
          for name in block_poses.keys():
             #testing
             print "moving {}".format(name)
+            # move over the block
+            pnp.move_to_start(block_poses[name][0])
             print("\nPicking...")
-            pnp.pick(block_poses[name])
+            pnp.pick(block_poses[name][1])
             print("\nPlacing...")
-            pnp.place(block_targets[name])
+            pnp.place(block_targets[name][1])
     return 0
 
 if __name__ == '__main__':
