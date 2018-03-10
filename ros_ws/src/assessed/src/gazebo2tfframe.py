@@ -42,6 +42,7 @@ def main():
                 rospy.loginfo(pos)
                 # Publish transformation given in pose
                 tfBroadcaster.sendTransform((pos.x, pos.y, pos.z), (ori.x, ori.y, ori.z, ori.w), rospy.Time.now(), input_basename+str(i), 'world')
+                print "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}".format(input_basename+str(i), pos.x, pos.y, pos.z, ori.x, ori.y, ori.z, ori.w)
                 rate.sleep()
     
     rospy.spin()
