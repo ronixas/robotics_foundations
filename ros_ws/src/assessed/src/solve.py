@@ -34,7 +34,7 @@ import baxter_interface
 import moveit_commander
 
 # constants
-noOfBlocks = 2
+noOfBlocks = 5
 baseName = "block"
 
 class PickAndPlaceMoveIt(object):
@@ -106,6 +106,7 @@ class PickAndPlaceMoveIt(object):
         self._group.set_pose_target(pose)
         plan = self._group.plan()
         self._group.execute(plan)
+        rospy.sleep(1.0)
 
     def pick(self, pose):
         # open the gripper
@@ -141,7 +142,7 @@ def main():
 
     # decide on the limb (left or right)
     limb = 'left'
-    hover_distance = 0.1 # meters
+    hover_distance = 0.2 # meters
 
     # create the sorting object
     pnp = PickAndPlaceMoveIt(limb, hover_distance)
@@ -159,7 +160,7 @@ def main():
             (trans,rot) = pnp.listener.lookupTransform('/world', '/' + objName, rospy.Time(0))
 
             # use the transforms to create poses
-            start_position = Point(x=trans[0]+delta, y=trans[1], z=float(trans[2])+0.2) # 20cm above the object
+            start_position = Point(x=trans[0], y=trans[1], z=float(trans[2])+0.3) # 20cm above the object
             obj_position = Point(x=trans[0], y=trans[1], z=trans[2])
             orientation = Quaternion(x=rot[0], y=1, z=rot[2], w=0.00486450832011)
 
