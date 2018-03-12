@@ -24,7 +24,7 @@ noOfBlocks = 2
 
 def load_gazebo_models():
 
-    table1_pose=Pose(position=Point(x=1.0, y=0.0, z=0.0))
+    table1_pose=Pose(position=Point(x=0.8, y=0.5, z=0.0))
     table2_pose=Pose(position=Point(x=-0.2, y=1.0, z=0.0))
     table_reference_frame="world"
     block_reference_frame="world"
@@ -63,10 +63,11 @@ def load_gazebo_models():
     import random
     rospy.wait_for_service('/gazebo/spawn_urdf_model')
     for i in range(0,noOfBlocks):
-        pos_x = random.uniform(0.5, 0.9)
-        pos_y = random.uniform(-0.4,0.4)
+        pos_x = random.uniform(0.4, 0.6)
+        pos_y = random.uniform(0.3,0.8)
         #block_pose=Pose(position=Point(x=0.6725, y=0.1265, z=0.7825))
         block_pose=Pose(position=Point(x=pos_x, y=pos_y, z=0.7825))
+	rospy.logwarn(block_pose)
 
         # Spawn Block URDF
         try:

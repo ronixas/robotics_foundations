@@ -40,9 +40,9 @@ def main():
                 pos = pose[input_basename+str(i)].position
                 ori = pose[input_basename+str(i)].orientation
                 rospy.loginfo(pos)
+                rospy.loginfo(ori)
                 # Publish transformation given in pose
-                tfBroadcaster.sendTransform((pos.x, pos.y, pos.z), (ori.x, ori.y, ori.z, ori.w), rospy.Time.now(), input_basename+str(i), 'world')
-                print "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}".format(input_basename+str(i), pos.x, pos.y, pos.z, ori.x, ori.y, ori.z, ori.w)
+                tfBroadcaster.sendTransform((pos.x + 0.02, pos.y + 0.02, pos.z + 0.02), (ori.x, ori.y, ori.z, ori.w), rospy.Time.now(), input_basename+str(i), 'world')
                 rate.sleep()
     
     rospy.spin()
