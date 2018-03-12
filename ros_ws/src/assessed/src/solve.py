@@ -106,7 +106,7 @@ class PickAndPlaceMoveIt(object):
         self._group.set_pose_target(pose)
         plan = self._group.plan()
         self._group.execute(plan)
-        rospy.sleep(1.0)
+        
 
     def pick(self, pose):
         # open the gripper
@@ -127,6 +127,7 @@ class PickAndPlaceMoveIt(object):
         self._servo_to_pose(pose)
         # open the gripper
         self.gripper_open()
+        rospy.sleep(1.0)
         # retract to clear object
         self._retract()
 
@@ -147,10 +148,8 @@ def main():
     # create the sorting object
     pnp = PickAndPlaceMoveIt(limb, hover_distance)
 
-    # block starting positions (as retrieved by tf listener) will be held in a dictionary
-    block_poses = dict()
-
-    
+    delta = 0     # target position offset counter
+    # move block one by one
     for objNo in range(0, noOfBlocks):
         try:
             # block name
@@ -159,44 +158,39 @@ def main():
             # retrieve block transformation with help of a listener
             (trans,rot) = pnp.listener.lookupTransform('/world', '/' + objName, rospy.Time(0))
 
-            # use the transforms to create poses
-            start_position = Point(x=trans[0], y=trans[1], z=float(trans[2])+0.3) # 20cm above the object
+            # use the transforms to obtain position and orientation information
+            start_position = Point(x=trans[0], y=trans[1], z=float(trans[2])+0.3) # 30cm above the object
             obj_position = Point(x=trans[0], y=trans[1], z=trans[2])
             orientation = Quaternion(x=rot[0], y=1, z=rot[2], w=0.00486450832011)
 
-            # update the block positions
-            block_poses[objName] = dict()
-            block_poses[objName]["hover"] = Pose(position=start_position, orientation=orientation)
-            block_poses[objName]["obj"] = Pose(position=obj_position, orientation=orientation)
+            # create poses
+            hover = Pose(position=start_position, orientation=orientation)
+            obj = Pose(position=obj_position, orientation=orientation)
+            
+            # calculate target position
+            target_position = Point(x=-0.2+(0.09*delta), y=0.95, z=0.775036)
+            target_orientation = Quaternion(x=0, y=1, z=0, w=0.00486450832011)
+            target_pose = Pose(position=target_position, orientation=target_orientation)
  
+            print "preparing to move {}".format(objName)
+            # move over the block
+            pnp.move_to_start(hover)
+
+            print("\nPicking block {}". format(objName))
+            # implement picking 
+            pnp.pick(obj)
+
+            print("\nPlacing block {}".format(objName))
+            # plan and execute placing
+            pnp.place(target_pose)
+       
+            # increment offset
+            delta = delta + 1
+
         except Exception as e:
             print e
             return 1
 
-
-    delta = 0     # target position offset counter
-    # move block one by one
-    for name in block_poses.keys():
-       
-       print "preparing to move {}".format(name)
-       # move over the block
-       pnp.move_to_start(block_poses[name]["hover"])
-
-       print("\nPicking block {}". format(name))
-       # implement picking 
-       pnp.pick(block_poses[name]["obj"])
-
-       print("\nPlacing block {}".format(name))
-       # plan and execute position
-       target_position = Point(x=-0.2, y=0.7+(0.1*delta), z=trans[2])
-       target_orientation = Quaternion(x=0, y=1, z=0, w=0.00486450832011)
-       target_pose = Pose(position=target_position, orientation=target_orientation)
-
-       # plan and execute placing
-       pnp.place(target_pose)
-       
-       # increment offset
-       delta = delta + 1
     return 0
 
 if __name__ == '__main__':
