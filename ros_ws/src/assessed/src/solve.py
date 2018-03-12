@@ -57,7 +57,7 @@ class PickAndPlaceMoveIt(object):
 
         # used for motion planning and execution
         self._group = moveit_commander.MoveGroupCommander(limb+"_arm")
-        self._group.set_max_velocity_scaling_factor(0.2) # This is to make Baxter move slower
+        self._group.set_max_velocity_scaling_factor(0.15) # This is to make Baxter move slower
 
 
     def move_to_start(self, start_angles=None):
