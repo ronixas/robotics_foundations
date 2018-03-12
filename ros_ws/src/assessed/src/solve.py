@@ -35,7 +35,7 @@ import moveit_commander
 
 # constants
 noOfBlocks = 2
-delta = 0.02 # x,y,z center offset
+delta = 0# x,y,z center offset
 baseName = "block"
 
 class PickAndPlaceMoveIt(object):
@@ -179,7 +179,7 @@ def main():
             # retrieve block transformation with help of a listener
             (trans,rot) = pnp.listener.lookupTransform('/world', '/' + objName, rospy.Time(0))
             # use the transforms to create poses
-            start_position = Point(x=trans[0]+delta, y=0, z=float(trans[2])+0.2) # 30cm above the object
+            start_position = Point(x=trans[0]+delta, y=trans[1], z=float(trans[2])+0.2) # 30cm above the object
             obj_position = Point(x=trans[0]+delta, y=trans[1]+delta, z=trans[2]+delta)
 
             orientation=Quaternion(x=rot[0], y=1, z=rot[2], w=0.00486450832011)
@@ -198,17 +198,23 @@ def main():
             print e
 
     # move block one by one
-    #while not rospy.is_shutdown():
+    d = 0
     for name in block_poses.keys():
             #testing
        print "moving {}".format(name)
             # move over the block
        pnp.move_to_start(block_poses[name][0])
-       #print("\nPicking...")
+
+       print("\nPicking...")
        #print "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}".format(name, block_poses[name][0].position.x, block_poses[name][0].position.y, block_poses[name][0].position.z, block_poses[name][0].orientation.x, block_poses[name][0].orientation.y, block_poses[name][0].orientation.z, block_poses[name][0].orientation.w)  
-       #pnp.pick(block_poses[name][1])
-       #print("\nPlacing...")
-       #pnp.place(block_targets[name])
+       pnp.pick(block_poses[name][1])
+
+       print("\nPlacing...")
+       target_position = Point(x=-0.2, y=0.7+(0.05*d), z=0.7825)
+       target_orientation = Quaternion(x=0, y=1, z=0, w=0.00486450832011)
+       target_pose = Pose(position=target_position, orientation=target_orientation)
+       pnp.place(target_pose)
+       d = d + 1
     return 0
 
 if __name__ == '__main__':
