@@ -5,7 +5,7 @@ from gazebo_msgs.msg import LinkStates
 
 # This is hard-coded to block for this excercise, yet you can make the script general by adding cmd line arguments
 input_basename = "block"
-noOfBlocks = 5
+noOfBlocks = 2
 
 # Global variable where the object's pose is stored
 pose = None

@@ -20,7 +20,7 @@ from std_msgs.msg import (
     Empty,
 )
 
-noOfBlocks = 5
+noOfBlocks = 2
 
 def load_gazebo_models():
 

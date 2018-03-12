@@ -34,7 +34,8 @@ import baxter_interface
 import moveit_commander
 
 # constants
-noOfBlocks = 5
+noOfBlocks = 2
+delta = 0.025 # x,y,z center offset
 baseName = "block"
 
 class PickAndPlaceMoveIt(object):
@@ -147,7 +148,7 @@ def main():
 
     # decide on the limb (left or right)
     limb = 'left'
-    hover_distance = 0.15 # meters
+    hover_distance = 0.1 # meters
 
     # create the sorting object
     pnp = PickAndPlaceMoveIt(limb, hover_distance)
@@ -165,12 +166,15 @@ def main():
             # retrieve block transformation with help of a listener
             (trans,rot) = pnp.listener.lookupTransform('/world', '/' + objName, rospy.Time(0))
             # use the transforms to create poses
-            start_position = Point(x=trans[0], y=trans[1], z=float(trans[2])+0.3) # 30cm above the object
-            obj_position = Point(x=trans[0], y=trans[1], z=trans[2])
+            start_position = Point(x=trans[0]+delta, y=trans[1]+delta, z=float(trans[2])+0.2) # 30cm above the object
+            obj_position = Point(x=trans[0]+delta, y=trans[1]+delta, z=trans[2]+delta)
+
+            orientation=Quaternion(x=rot[0], y=1, z=rot[2], w=0.00486450832011)
+
             # update the block positions
             block_poses[objName] = [Pose(position=start_position, orientation=orientation), Pose(position=obj_position, orientation=orientation)]
 	    print "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}".format(objName, trans[0], trans[1], trans[2], rot[0], rot[1], rot[2], rot[3]) 
-            targ_pos = Point(x=float(trans[0])+0.2, y=trans[1], z=trans[2])
+            targ_pos = Point(x=float(trans[0])+delta+0.2, y=trans[1]+delta, z=trans[2]+delta)
 
             block_targets[objName] = Pose(position=targ_pos, orientation=orientation)
 
